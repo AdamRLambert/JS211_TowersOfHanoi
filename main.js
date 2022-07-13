@@ -28,28 +28,45 @@ const printStacks = () => {
   console.log("b: " + stacks.b);
   console.log("c: " + stacks.c);
 }
-
-// Next, what do you think this function should do?
-const movePiece = () => {
+// we want to pop one item from an array and push it into another array 
+const movePiece = (startStack, endStack) => {
   // Your code here
-
+  stacks[endStack].push(stacks[startStack].pop())    
+ 
 }
 
-// Before you move, should you check if the move it actually allowed? Should 3 be able to be stacked on 2
-const isLegal = () => {
-  // Your code here
-
+// with this code, we are going to compare the value of "rings" on one stack to the other stack, if the value of the
+// stack is 0 or the value of rings on the second move is more than the value of "rings" on the first move 
+//is greater, the game can continue 
+const isLegal = (firstMove, secondMove) => {
+  console.log(firstMove), (secondMove)
+  if(!(stacks[secondMove].length) || (stacks[secondMove][stacks[secondMove].length -1] > stacks[firstMove][stacks[firstMove].length -1])){
+    return true 
+  } else {
+    console.log("You can't do that you Captialist scum")
+    return false
+  }
 }
 
-// What is a win in Towers of Hanoi? When should this function run?
+//with this, we are checking to see if the stacks equal the required amout of "rings" per stack.  And in this case, 4
 const checkForWin = () => {
-  // Your code here
-
+  
+  if (stacks['b'].length === 4 || stacks['c'].length === 4) {
+    console.log('You have demolished private property!')
+    return true
+  } else {
+    return false
+  }
 }
 
-// When is this function called? What should it do with its argument?
-const towersOfHanoi = (startStack, endStack) => {
-  // Your code here
+// this is taking the users input and making the variable that we will use in both "isLegal" and "movePiece"
+const towersOfHanoi = (start, end) => {
+  
+  if(isLegal(start, end)) {
+    movePiece(start, end) 
+  } else {
+    console.log("Is that what Marx would do?")
+  }
 
 }
 
